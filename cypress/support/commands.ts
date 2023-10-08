@@ -19,11 +19,6 @@ Cypress.Commands.add('login', () => {
         email,
         senha: password,
         redirecionar: false,
-      },
-      headers: {
-        'Content-Type': 'application/json;charset=UTF-8',
-        Origin: 'https://barrigareact.wcaquino.me',
-        Referer: 'https://barrigareact.wcaquino.me',
       }
     }
   
