@@ -1,0 +1,14 @@
+{
+  "name": "cypress-course",
+  "module": "cypress.config.ts",
+  "type": "commonjs",
+  "scripts": {
+    "open": "cypress open --browser chrome --e2e",
+    "run:chrome": "cypress run --browser chrome --e2e"
+  },
+  "devDependencies": {
+    "bun-types": "latest",
+    "cypress": "^13.2.0",
+    "typescript": "^5.2.2"
+  }
+}
