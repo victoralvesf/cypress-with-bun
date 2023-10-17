@@ -19,17 +19,20 @@ declare global {
        */
       login(): Chainable<void>
       /**
-       * Custom command to get JWT Token.
-       * @example cy.getJwtToken().then(token => console.log(token))
-       */
-      getJwtToken(): Chainable<string>
-      /**
        * Custom command reset the test data.
        * @example cy.resetDB()
        */
       resetDB(): Chainable<void>
       api(options: Partial<Cypress.RequestOptions>, name?: string): Chainable<Response<any>>
+      /**
+       * Custom command to search for an account by name.
+       * @example cy.getAccountByName('Account name').then(account => console.log(account.id))
+       */
       getAccountByName(name: string): Chainable<AccountResponse>
+      /**
+       * Custom command to search for a transaction by name.
+       * @example cy.getTransactionByName('Transaction name').then(transaction => console.log(transaction.id))
+       */
       getTransactionByName(name: string): Chainable<TransactionResponse>
     }
   }
