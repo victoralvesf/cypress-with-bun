@@ -7,8 +7,12 @@
     "run:chrome": "cypress run --browser chrome --e2e"
   },
   "devDependencies": {
+    "@bahmutov/cy-api": "^2.2.6",
     "bun-types": "latest",
     "cypress": "^13.2.0",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.10"
   }
 }

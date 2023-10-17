@@ -5,6 +5,9 @@ export default defineConfig({
     baseUrl: 'https://barrigareact.wcaquino.me',
     setupNodeEvents(on, config) {
       // implement node event listeners here
+      config.env.apiBaseUrl = 'https://barrigarest.wcaquino.me'
+
+      return config
     },
   },
 });

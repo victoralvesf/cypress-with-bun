@@ -13,8 +13,11 @@
     ],
     "types": [
       "cypress",
+      "@bahmutov/cy-api",
       "node"
     ],
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
   },
   "include": [
     "cypress/**/*.ts"
