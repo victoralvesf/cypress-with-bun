@@ -3,13 +3,14 @@
   "module": "cypress.config.ts",
   "type": "commonjs",
   "scripts": {
+    "cy:install": "cypress install",
     "open": "cypress open --browser chrome --e2e",
     "run:chrome": "cypress run --browser chrome --e2e"
   },
   "devDependencies": {
     "@bahmutov/cy-api": "^2.2.6",
     "bun-types": "latest",
-    "cypress": "^13.2.0",
+    "cypress": "13.5.1",
     "typescript": "^5.2.2"
   },
   "dependencies": {
