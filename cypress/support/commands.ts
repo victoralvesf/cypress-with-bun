@@ -11,6 +11,8 @@
 //
 
 import { AccountResponse, RequestOptions } from "."
+import { stubs } from "./intercepts"
+import { header, login, statement, transactions } from "./locators"
 
 const apiBaseUrl = Cypress.env('apiBaseUrl') as string
 
@@ -51,6 +53,33 @@ Cypress.Commands.add('login', () => {
       Cypress.env('jwt_token', `JWT ${response.body.token}`)
     })
   })
+})
+
+Cypress.Commands.add('loginUI', (options) => {
+  stubs.auth.login()
+  if (options?.stub) stubs.balance.get()
+
+  cy.get(login.emailInput).type('fake user')
+  cy.get(login.passwordInput).type('fake pass')
+  cy.get(login.submitButton).click()
+})
+
+Cypress.Commands.add('gotoAccountsPage', (options) => {
+  if (options?.stub) stubs.account.get()
+  cy.get(header.accounts).click({ force: true })
+  cy.get('h2').should('have.text', 'Contas')
+})
+
+Cypress.Commands.add('gotoTransactionsPage', (options) => {
+  if (options?.stub) stubs.account.get()
+  cy.get(header.transactions).click({ force: true })
+  cy.get(transactions.associated).should('exist')
+})
+
+Cypress.Commands.add('gotoStatementsPage', (options) => {
+  if (options?.stub) stubs.statement.get()
+  cy.get(header.statement).click({ force: true })
+  cy.get(statement.list).should('exist')
 })
 
 Cypress.Commands.add('resetDB', () => {

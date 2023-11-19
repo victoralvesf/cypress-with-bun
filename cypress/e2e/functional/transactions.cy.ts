@@ -1,23 +1,20 @@
-import { stubs } from "@/support/intercepts"
 import { header, home, layout, statement, transactions } from "@/support/locators"
 
 describe('Transactions', () => {  
   beforeEach(() => {
+    cy.login()
+    cy.resetDB()
     cy.visit('/')
-    cy.loginUI({ stub: true })
   })
   
   it('Should create a transaction', () => {
-    stubs.transactions.create()
-    cy.gotoTransactionsPage({ stub: true })
+    cy.gotoTransactionsPage()
 
     cy.get(transactions.description).type('Aluguel')
     cy.get(transactions.value).type('600')
     cy.get(transactions.associated).type('Seu Barriga')
     cy.get(transactions.account).select('Conta para movimentacoes')
     cy.get(transactions.status).click()
-
-    stubs.statement.get()
 
     cy.get(transactions.save).click()
 
@@ -29,31 +26,22 @@ describe('Transactions', () => {
   })
 
   it('Should see the transaction amount on the home page', () => {
-    stubs.account.get()
-
     cy.get(home.accountsTableLines)
       .contains('td', 'Conta para saldo')
       .siblings()
       .should('include.text', '534,00')
 
-    stubs.statement.update()
-    cy.gotoStatementsPage()
-    stubs.account.get()
-    stubs.transactions.getOne()
+    cy.get(header.statement).click()
     
     cy.get(statement.editStatement('Movimentacao 1, calculo saldo')).click()
     cy.get(transactions.description).should('have.value', 'Movimentacao 1, calculo saldo')
     cy.get(transactions.account).find(':selected').should('have.text', 'Conta para saldo')
     
     cy.get(transactions.status).click()
-    stubs.account.get()
-    stubs.transactions.update()
-    stubs.statement.updated()
     cy.get(transactions.save).click()
 
     cy.get(layout.toastMessage).should('contain.text', 'Movimentação alterada com sucesso!')
 
-    stubs.balance.updated()
     cy.get(header.home).click()
 
     cy.get(home.accountsTableLines)
@@ -63,12 +51,9 @@ describe('Transactions', () => {
   })
 
   it('Should remove a transaction', () => {
-    stubs.account.get()
-    stubs.transactions.remove()
-    stubs.statement.removed()
-    cy.gotoStatementsPage({ stub: true })
+    cy.gotoStatementsPage()
 
-    cy.get(statement.removeStatement('Aluguel')).click()
+    cy.get(statement.removeStatement('Movimentacao para exclusao')).click()
 
     cy.get(layout.toastMessage).should('contain.text', 'Movimentação removida com sucesso!')
   })

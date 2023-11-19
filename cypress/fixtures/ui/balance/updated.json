@@ -1,0 +1,22 @@
+[
+  {
+    "conta_id": 1,
+    "conta": "Conta SpaceX",
+    "saldo": "2125000.00"
+  },
+  {
+    "conta_id": 2,
+    "conta": "Conta Starlink",
+    "saldo": "50134200.00"
+  },
+  {
+    "conta_id": 3,
+    "conta": "Conta Tesla",
+    "saldo": "20902929220.00"
+  },
+  {
+    "conta_id": 4,
+    "conta": "Conta para saldo",
+    "saldo": "4034.00"
+  }
+]

@@ -6,6 +6,10 @@ interface Dayjs {
   (date?: dayjs.ConfigType, format?: dayjs.OptionType, locale?: string, strict?: boolean): dayjs.Dayjs;
 }
 
+type Stub = {
+  stub?: boolean
+}
+
 declare global {
   namespace Cypress {
     interface Cypress {
@@ -18,6 +22,26 @@ declare global {
        * @example cy.login()
        */
       login(): Chainable<void>
+      /**
+       * Custom command to make login using UI.
+       * @example cy.loginUI()
+       */
+      loginUI(options?: Stub): Chainable<void>
+      /**
+       * Custom command to navigate to accounts page using UI.
+       * @example cy.gotoAccountsPage()
+       */
+      gotoAccountsPage(options?: Stub): Chainable<void>
+      /**
+       * Custom command to navigate to transactions page using UI.
+       * @example cy.gotoTransactionsPage()
+       */
+      gotoTransactionsPage(options?: Stub): Chainable<void>
+      /**
+       * Custom command to navigate to statements page using UI.
+       * @example cy.gotoStatementsPage()
+       */
+      gotoStatementsPage(options?: Stub): Chainable<void>
       /**
        * Custom command reset the test data.
        * @example cy.resetDB()
